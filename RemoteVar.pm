@@ -1,7 +1,7 @@
 package Tie::RemoteVar;
 use 5.006;
 use strict;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use Net::Server;
 use Tie::RemoteVar::Callback;
 use Tie::RemoteVar::Constant;
@@ -52,7 +52,7 @@ Tie::RemoteVar - Share variables everywhere
 
   # server side
   my $vs = Tie::RemoteVar->new(allow => '127.0.0.1');
-  $vs->start;
+  $vs->startserver;
 
   # client side
   tie(%HASH, 'Tie::RemoteVar', id => 'meatball');
@@ -76,7 +76,7 @@ Localhost access is I<not> presumed valid before users make an explicit statemen
 
 then start it
 
-  $vs->start;
+  $vs->startserver;
 
 After setup is completed, users are empowered to access variables across processes or hosts. Likewise, default port is I<1234> and default host is I<127.0.0.1>. Additionally, users need to specify the variable's identifier on server, which is similar to the C<key> used in C<shmget>. It is required in order to locate variable after program's termination.
 
